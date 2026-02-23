@@ -6,7 +6,7 @@ This project uses a Convolutional Neural Network (CNN) to detect and classify di
 
 The dataset for training and evaluation is hosted on Google Drive.  
 👉 **Download / access the dataset here:**  
-https://drive.google.com/drive/folders/1wGNFhdjxl7J1rljxicbArto9Z9AJT8WA?usp=sharing
+https://www.kaggle.com/datasets/vipoooool/new-plant-diseases-dataset
 
 > Make sure the folder is set to *“Anyone with the link can view”* so that users can download the data without restrictions.:contentReference[oaicite:0]{index=0}
 
