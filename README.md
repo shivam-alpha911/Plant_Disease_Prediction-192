@@ -1,7 +1,7 @@
 # 🌿 Plant Disease Prediction Model
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/shivam-alpha911/Plant_Disease_Prediction-192/main/main.py)
 
-This project uses a Convolutional Neural Network (CNN) to detect and classify diseases in plant leaf images. The model is trained on a large dataset of plant leaf images and can predict the disease type from an uploaded image. It helps farmers and researchers quickly identify plant diseases using AI.
-
+This project uses a Convolutional Neural Network (CNN) to detect and classify diseases in plant leaf images. The model is trained on a large dataset of plant leaf images and can predict the disease type from an uploaded image in a beautifully designed web interface.
 ## 📁 Dataset
 
 The dataset for training and evaluation is hosted on Google Drive.  
@@ -17,17 +17,16 @@ https://www.kaggle.com/datasets/vipoooool/new-plant-diseases-dataset
 - Preprocessing includes resizing, normalization & augmentation  
 - Achieves high accuracy on validation images
 
-## 🚀 How to Run
+## 🚀 How to Run Locally
 
 1. Clone the repository:  
-   `git clone https://github.com/<your-username>/<your-repo>.git`
-2. Install dependencies:  
+   `git clone https://github.com/shivam-alpha911/Plant_Disease_Prediction-192.git`
+2. Enter the directory:
+   `cd Plant_Disease_Prediction-192`
+3. Install dependencies:  
    `pip install -r requirements.txt`
-3. Place downloaded dataset in the `data/` folder  
-4. Train the model:  
-   `python train.py`  
-5. Run prediction:  
-   `python predict.py --image <path_to_leaf_image>`
+4. Run the Streamlit app:  
+   `streamlit run main.py`  
 
 ## 📊 Performance
 
