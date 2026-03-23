@@ -1,5 +1,5 @@
 # 🌿 Plant Disease Prediction Model
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/shivam-alpha911/Plant_Disease_Prediction-192/main/main.py)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://plantdiseaseprediction-192-kal4lr4gocgmtrdlktxogt.streamlit.app/)
 
 This project uses a Convolutional Neural Network (CNN) to detect and classify diseases in plant leaf images. The model is trained on a large dataset of plant leaf images and can predict the disease type from an uploaded image in a beautifully designed web interface.
 ## 📁 Dataset
@@ -37,7 +37,7 @@ https://www.kaggle.com/datasets/vipoooool/new-plant-diseases-dataset
 
 ## 🧩 Deployment
 
-You can deploy this as a web or mobile app using Flask, Streamlit, or FastAPI for users to upload images and get predictions.
+The application is currently deployed and accessible live at: **[PlantGuard AI Live Demo](https://plantdiseaseprediction-192-kal4lr4gocgmtrdlktxogt.streamlit.app/)**
 
 ---
 
