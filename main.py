@@ -7,7 +7,7 @@ st.set_page_config(
     page_title="PlantGuard AI",
     page_icon="🌿",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",
 )
 
 # ── CSS ───────────────────────────────────────────────────────────────────────
@@ -34,11 +34,8 @@ html, body, [class*="css"] { font-family: 'Inter', sans-serif !important; }
 }
 
 /* ── Sidebar ── */
-[data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #091509 0%, #050d06 100%) !important;
-    border-right: 1px solid rgba(74,222,128,0.12) !important;
-}
-[data-testid="stSidebar"] > div:first-child { padding-top: 1.5rem; }
+[data-testid="stSidebar"] { display: none !important; }
+[data-testid="collapsedControl"] { display: none !important; }
 
 .sidebar-logo {
     font-size: 1.5rem;
@@ -664,24 +661,35 @@ CLASS_NAMES = [
     'Tomato — Mosaic Virus', 'Tomato — Healthy',
 ]
 
-# ── Sidebar ───────────────────────────────────────────────────────────────────
-with st.sidebar:
-    st.markdown('<div class="sidebar-logo">🌿 PlantGuard AI</div>', unsafe_allow_html=True)
-    st.markdown('<div class="sidebar-divider"></div>', unsafe_allow_html=True)
+# ── Navigation (UI Buttons) ───────────────────────────────────────────────────
+if 'page' not in st.session_state:
+    st.session_state.page = "🏠  Home"
 
-    page = st.selectbox(
-        "NAVIGATE",
-        ["🏠  Home", "ℹ️  About", "🔬  Disease Recognition"],
-        label_visibility="visible",
-    )
+st.markdown('<div class="sidebar-logo">🌿 PlantGuard AI</div>', unsafe_allow_html=True)
+st.markdown('<div class="sidebar-divider"></div>', unsafe_allow_html=True)
 
-    st.markdown('<div class="sidebar-divider"></div>', unsafe_allow_html=True)
-    st.markdown("""
+nav1, nav2, nav3 = st.columns(3)
+with nav1:
+    if st.button("🏠  Home"):
+        st.session_state.page = "🏠  Home"
+with nav2:
+    if st.button("ℹ️  About"):
+        st.session_state.page = "ℹ️  About"
+with nav3:
+    if st.button("🔬  Disease Recognition"):
+        st.session_state.page = "🔬  Disease Recognition"
+
+st.markdown('<div class="sidebar-divider"></div>', unsafe_allow_html=True)
+st.markdown("""
+<div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
     <div class="sidebar-stat"><span class="dot"></span>38 disease classes</div>
     <div class="sidebar-stat"><span class="dot"></span>14 crop varieties</div>
     <div class="sidebar-stat"><span class="dot"></span>87K+ training images</div>
     <div class="sidebar-stat"><span class="dot"></span>CNN · TensorFlow</div>
-    """, unsafe_allow_html=True)
+</div>
+""", unsafe_allow_html=True)
+
+page = st.session_state.page
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
