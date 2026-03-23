@@ -378,6 +378,46 @@ html, body, [class*="css"] { font-family: 'Inter', sans-serif !important; }
 ::-webkit-scrollbar-track { background: #030804; }
 ::-webkit-scrollbar-thumb { background: #1a4d28; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #4ade80; }
+
+/* ── Pills Navigation ── */
+[data-testid="stPills"] {
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+[data-testid="stPills"] button {
+    background: rgba(5,46,16,0.3) !important;
+    border: 1px solid rgba(74,222,128,0.25) !important;
+    border-radius: 12px !important;
+    color: #7ab87a !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    padding: 0.4rem 1.5rem !important;
+    transition: all 0.2s ease !important;
+}
+[data-testid="stPills"] button:hover {
+    border-color: #4ade80 !important;
+    color: #4ade80 !important;
+    background: rgba(74,222,128,0.1) !important;
+}
+[data-testid="stPills"] button[data-state="active"], [data-testid="stPills"] button[aria-selected="true"] {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%) !important;
+    color: #fff !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(74,222,128,0.3) !important;
+}
+
+/* ── Responsive Mobile Adjustments ── */
+@media (max-width: 768px) {
+    .block-container { padding: 1rem 1rem !important; }
+    .hero { padding: 1.5rem 1rem !important; text-align: center; }
+    .hero h1 { font-size: 1.6rem; }
+    .hero p { font-size: 0.9rem; }
+    .sidebar-logo { justify-content: center; font-size: 1.3rem; }
+    .sidebar-stat { font-size: 0.75rem; }
+    .result-card .r-icon { font-size: 2.5rem; }
+    .result-card .r-name { font-size: 1.2rem; }
+    .fcard { margin-bottom: 1rem; }
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -661,35 +701,38 @@ CLASS_NAMES = [
     'Tomato — Mosaic Virus', 'Tomato — Healthy',
 ]
 
-# ── Navigation (UI Buttons) ───────────────────────────────────────────────────
+# ── Navigation (UI Pills) ─────────────────────────────────────────────────────
 if 'page' not in st.session_state:
     st.session_state.page = "🏠  Home"
 
 st.markdown('<div class="sidebar-logo">🌿 PlantGuard AI</div>', unsafe_allow_html=True)
 st.markdown('<div class="sidebar-divider"></div>', unsafe_allow_html=True)
 
-nav1, nav2, nav3 = st.columns(3)
-with nav1:
-    if st.button("🏠  Home"):
-        st.session_state.page = "🏠  Home"
-with nav2:
-    if st.button("ℹ️  About"):
-        st.session_state.page = "ℹ️  About"
-with nav3:
-    if st.button("🔬  Disease Recognition"):
-        st.session_state.page = "🔬  Disease Recognition"
+# Use st.pills for native responsive horizontal wrapping navigation
+selected_page = st.pills(
+    "Navigation", 
+    ["🏠  Home", "ℹ️  About", "🔬  Disease Recognition"], 
+    selection_mode="single",
+    label_visibility="collapsed",
+    default=st.session_state.page
+)
+
+# Only update if a valid new selection is made (prevent deselecting to hide app)
+if selected_page and selected_page != st.session_state.page:
+    st.session_state.page = selected_page
+    st.rerun()
+
+page = st.session_state.page
 
 st.markdown('<div class="sidebar-divider"></div>', unsafe_allow_html=True)
 st.markdown("""
-<div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+<div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; justify-content: center;">
     <div class="sidebar-stat"><span class="dot"></span>38 disease classes</div>
     <div class="sidebar-stat"><span class="dot"></span>14 crop varieties</div>
     <div class="sidebar-stat"><span class="dot"></span>87K+ training images</div>
     <div class="sidebar-stat"><span class="dot"></span>CNN · TensorFlow</div>
 </div>
 """, unsafe_allow_html=True)
-
-page = st.session_state.page
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
